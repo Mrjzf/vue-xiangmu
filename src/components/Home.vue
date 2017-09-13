@@ -89,7 +89,7 @@ import common from '../kits/common.js';
 
 <style scoped>
 	.mint-swipe{
-		height: 300px;
+		height: 50vw;
 	}
 	.mint-swipe-item img{
 		width: 100%;
@@ -97,7 +97,7 @@ import common from '../kits/common.js';
 	.mint-swipe-item{
 		background-color: red;
 		width: 100%;
-		height: 300px;
+		height: 50vw;
 	}
 	
 	.mui-content,.mui-content ul{

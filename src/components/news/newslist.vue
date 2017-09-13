@@ -44,29 +44,6 @@ import common from '../../kits/common.js';
 			this.$http.get(url).then(function(res){
 				// 3.0 获取到响应报文体数据
 					var body = res.body;
-				/*  数据格式：
-				{
-					  "status": 0,   // 0 :代表的是成功  非0代表的是服务器发生了错误
-					  "message": [
-						{
-						  "id": 13,
-						  "title": "1季度多家房企利润跌幅超50% 去库存促销战打响",
-						  "add_time": "2015-04-16T03:50:28.000Z",
-						  "zhaiyao": "房企一季度销售业绩已经陆续公布，克而瑞研究中心统计",
-						  "click": 1,
-						  "img_url": "http://www.webhm.top:8080/upload/201504/16/201504161149414479.jpg"
-						},
-						{
-						  "id": 14,
-						  "title": "买房还是炒股，2015年买房无法拒绝的5大理由",
-						  "add_time": "2015-04-16T04:05:34.000Z",
-						  "zhaiyao": "转眼间2015年已经过去了4个月，在这短短的四个月",
-						  "click": 2,
-						  "img_url": "http://www.webhm.top:8080/upload/201504/16/201504161205596364.jpg"
-						}
-						]
-
-				*/
 				// 4.0 判断响应报文体中的状态值，如果是非0则将服务器响应回来的错误消息提示给用户
 				if(body.status != 0){
 					Toast(body.message);

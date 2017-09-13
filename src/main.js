@@ -19,11 +19,12 @@ import newsinfo from './components/news/newsinfo.vue';
 // 3.0.2 定义路由规则
 var router1 = new vueRouter({
 	linkActiveClass:'mui-active',  //改变路由激活时的class名称
-	routes:[
+	routes: [
+		{path:'/',redirect:'/home'},  //启动的时候  跳转到首页
 		{path:'/home',component:home},   //首页
 		//{path:'/shopcar',component:shopcar},  // 购物车
 		{path:'/news/newslist',component:newslist}, //新闻资讯列表页面
-		{path:'/news/newsinfo/:id',component:newsinfo}  // 新闻资讯详情页面
+		{path:'/news/newsinfo/:id',component:newsinfo}  // 新闻资讯详情页面 传入一个id
 	]
 	});
 
