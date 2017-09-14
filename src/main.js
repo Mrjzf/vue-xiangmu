@@ -15,6 +15,7 @@ import home from './components/Home.vue';
 import newslist from './components/news/newslist.vue';
 import newsinfo from './components/news/newsinfo.vue';
 import photolist from './components/photo/photolist.vue';
+import photoinfo from './components/photo/photoinfo.vue';
 
 
 // 3.0.2 定义路由规则
@@ -26,7 +27,8 @@ var router1 = new vueRouter({
 		//{path:'/shopcar',component:shopcar},  // 购物车
 		{ path: '/news/newslist', component: newslist }, //新闻资讯列表页面
 		{ path: '/news/newsinfo/:id', component: newsinfo },  // 新闻资讯详情页面 传入一个id
-		{ path: '/photo/photolist', component: photolist }
+		{ path: '/photo/photolist', component: photolist },
+		{ path: '/photo/photoinfo/:id', component: photoinfo }
 	]
 });
 
@@ -55,6 +57,10 @@ Vue.filter('datefmt', function (input, fmtstring) {
 	//	使用momentjs这个日期格式化类库实现日的格式化功能
 	return moment(input).format(fmtstring);
 });
+
+//9.0 使用图片预览组件
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview);
 
 // 5.0 利用Vue对象进行解析渲染
 new Vue({
