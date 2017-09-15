@@ -78,7 +78,6 @@ export default {
 
 #cate ul {
     margin: 0;
-    width: 1000px;
     padding-left: 10px;
 }
 

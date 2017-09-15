@@ -11,12 +11,15 @@ Vue.use(vueRouter);
 
 // 3.0.2 导入路由规则对应的组件对象
 import home from './components/Home.vue';
-//import shopcar from './components/shopcar/car.vue';
 import newslist from './components/news/newslist.vue';
 import newsinfo from './components/news/newsinfo.vue';
 import photolist from './components/photo/photolist.vue';
 import photoinfo from './components/photo/photoinfo.vue';
-
+import goodslist from './components/goods/goodslist.vue';
+import goodsinfo from './components/goods/goodsinfo.vue';
+import goodsdesc from './components/goods/goodsdesc.vue';
+import goodscomment from './components/goods/goodscomment.vue';
+import car from './components/shopcar/car.vue';
 
 // 3.0.2 定义路由规则
 var router1 = new vueRouter({
@@ -24,11 +27,16 @@ var router1 = new vueRouter({
 	routes: [
 		{ path: '/', redirect: '/home' },  //启动的时候  跳转到首页
 		{ path: '/home', component: home },   //首页
-		//{path:'/shopcar',component:shopcar},  // 购物车
 		{ path: '/news/newslist', component: newslist }, //新闻资讯列表页面
 		{ path: '/news/newsinfo/:id', component: newsinfo },  // 新闻资讯详情页面 传入一个id
 		{ path: '/photo/photolist', component: photolist },
-		{ path: '/photo/photoinfo/:id', component: photoinfo }
+		{ path: '/photo/photoinfo/:id', component: photoinfo },
+		{ path: '/goods/goodslist', component: goodslist },
+		{ path: '/goods/goodsinfo/:id', component: goodsinfo },
+		{ path: '/goods/goodsdesc/:id', component: goodsdesc },
+		{ path: '/goods/goodscomment/:id', component: goodscomment },
+		{ path: '/shopcar/car', component: car },
+
 	]
 });
 
@@ -54,7 +62,7 @@ Vue.use(vueResource);
 // 8.0 定义一个全局过滤器实现日期的格式化
 import moment from 'moment';
 Vue.filter('datefmt', function (input, fmtstring) {
-	//	使用momentjs这个日期格式化类库实现日的格式化功能
+	//	使用momentjs这个日期格式化类库实现日期格式化功能
 	return moment(input).format(fmtstring);
 });
 
