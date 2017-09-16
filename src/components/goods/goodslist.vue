@@ -43,7 +43,7 @@ export default {
         getlist() {
             var url = common.apidomain + '/api/getgoods?pageindex=1';
             this.$http.get(url).then(function(res) {
-                console.log(res.body.message);
+                //console.log(res.body.message);
                 if (res.body.status != 0) {
                     Toast(res.body.message);
                     return;

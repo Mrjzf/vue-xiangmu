@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 230);
+/******/ 	return __webpack_require__(__webpack_require__.s = 231);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -35538,7 +35538,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(231);
+    var client = __webpack_require__(232);
 
     return new PromiseObj(function (resolve) {
 
@@ -38911,6 +38911,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__subcom_slider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__subcom_slider_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcom_inputNumber_vue__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__subcom_inputNumber_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__subcom_inputNumber_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__subcom_offset_js__ = __webpack_require__(230);
 //
 //
 //
@@ -38962,6 +38963,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+
 
 
 
@@ -38978,7 +38983,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             id: 0,
             imgs: [],
             info: [],
-            inputNumberCount: 1
+            inputNumberCount: 1,
+            isshow: false
         };
     },
     created() {
@@ -38997,13 +39003,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getinfo() {
             var url = __WEBPACK_IMPORTED_MODULE_0__kits_common_js__["a" /* default */].apidomain + '/api/goods/getinfo/' + this.id;
             this.$http.get(url).then(function (res) {
-                console.log(res);
+                //console.log(res);
                 this.info = res.body.message[0];
             });
         },
         getcount(count) {
             this.inputNumberCount = count;
+        },
+        toshopcar() {
+            var carcount = document.querySelector('#carcount');
+            carcount.innerHTML = parseInt(carcount.innerHTML) + this.inputNumberCount;
+            //也可以使用传值
+
+            //实现小球动画
+            this.isshow = !this.isshow;
+        },
+
+        //控制小球动画的三个方法
+        beforeEnter(el) {
+            el.style.transform = "translate(0,0)"; //起始位置
+        },
+        enter(el, done) {
+
+            el.offsetWidth; // 实时刷新小球动画
+
+            //不同屏幕下小球的结束坐标
+            var ballX = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__subcom_offset_js__["a" /* getTop */])(__WEBPACK_IMPORTED_MODULE_3__subcom_offset_js__["b" /* carcount */]);
+            console.log(ballX);
+            el.style.transform = "translate(75px,366px)"; //小球结束为止
+            //el.style.transform = "translate(" + ballX + "px," + ballY + "px)";  //小球结束为止        
+            done();
+        },
+        afterEnter(el) {
+            this.isshow = !this.isshow;
         }
+
     }
 });
 
@@ -39544,7 +39578,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.sendmessage();
         },
 
-        //传值
+        //传值 子组件向父组件传值
         sendmessage() {
             this.$emit('dataObj', this.count);
         }
@@ -39722,7 +39756,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n#subtmpl[data-v-65f3fa8c] {\r\n    width: 40px;\r\n    height: 25px;\r\n    line-height: 25px;\r\n    display: inline-block;\r\n    text-align: center;\n}\r\n", ""]);
+exports.push([module.i, "\n#subtmpl[data-v-65f3fa8c] {\r\n    width: 60px;\r\n    height: 25px;\r\n    line-height: 25px;\r\n    display: inline-block;\r\n    text-align: center;\n}\r\n", ""]);
 
 // exports
 
@@ -39806,7 +39840,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.slider[data-v-daab4718] {\r\n    border: 1px solid rgba(0, 0, 0, 0.4);\r\n    border-radius: 5px;\r\n    margin: 5px;\n}\n#buy[data-v-daab4718],\r\n#params[data-v-daab4718],\r\n#other[data-v-daab4718] {\r\n    margin: 5px;\r\n    padding: 5px;\r\n    border: 1px solid rgba(0, 0, 0, 0.4);\r\n    border-radius: 5px;\n}\n.line[data-v-daab4718] {\r\n    height: 1px;\r\n    border: 1px solid rgba(0, 0, 0, 0.2);\n}\n#buy ul[data-v-daab4718],\r\n#params ul[data-v-daab4718] {\r\n    padding-left: 0px;\n}\n#buy h4[data-v-daab4718] {\r\n    color: #0094ff;\r\n    padding: 5px;\n}\n#buy li[data-v-daab4718],\r\n#params li[data-v-daab4718] {\r\n    list-style: none;\r\n    padding: 8px;\n}\n#buy .price span[data-v-daab4718] {\r\n    color: red;\n}\n#other .imgdesc[data-v-daab4718] {\r\n    margin-bottom: 20px;\n}\n.inputli[data-v-daab4718] {\r\n    position: relative;\n}\n.inputnumber[data-v-daab4718] {\r\n    position: absolute;\r\n    left: 100px;\r\n    top: 5px;\n}\n.ball[data-v-daab4718] {\r\n    background-color: red;\r\n    height: 20px;\r\n    width: 20px;\r\n    border-radius: 50%;\r\n    position: absolute;\r\n    left: 150px;\r\n    top: 10px;\r\n    transition: all 0.4s ease;\r\n    z-index: 100;\n}\r\n", ""]);
+exports.push([module.i, "\n.slider[data-v-daab4718] {\r\n    border: 1px solid rgba(0, 0, 0, 0.4);\r\n    border-radius: 5px;\r\n    margin: 5px;\n}\n#buy[data-v-daab4718],\r\n#params[data-v-daab4718],\r\n#other[data-v-daab4718] {\r\n    margin: 5px;\r\n    padding: 5px;\r\n    border: 1px solid rgba(0, 0, 0, 0.4);\r\n    border-radius: 5px;\n}\n.line[data-v-daab4718] {\r\n    height: 1px;\r\n    border: 1px solid rgba(0, 0, 0, 0.2);\n}\n#buy ul[data-v-daab4718],\r\n#params ul[data-v-daab4718] {\r\n    padding-left: 0px;\n}\n#buy h4[data-v-daab4718] {\r\n    color: #0094ff;\r\n    padding: 5px;\n}\n#buy li[data-v-daab4718],\r\n#params li[data-v-daab4718] {\r\n    list-style: none;\r\n    padding: 8px;\n}\n#buy .price span[data-v-daab4718] {\r\n    color: red;\n}\n#other .imgdesc[data-v-daab4718] {\r\n    margin-bottom: 20px;\n}\n.inputli[data-v-daab4718] {\r\n    position: relative;\n}\n.inputnumber[data-v-daab4718] {\r\n    position: absolute;\r\n    left: 100px;\r\n    top: 5px;\n}\n.ball[data-v-daab4718] {\r\n    background-color: red;\r\n    height: 20px;\r\n    width: 20px;\r\n    border-radius: 50%;\r\n    position: absolute;\r\n    left: 170px;\r\n    top: 10px;\r\n    transition: all 1s ease;\r\n    z-index: 100;\n}\r\n", ""]);
 
 // exports
 
@@ -45064,7 +45098,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', [_c('mt-header', {
     attrs: {
       "fixed": "",
-      "title": "传智播客.黑马程序员Vue商城系统"
+      "title": "传智.黑马"
     }
   }), _vm._v(" "), _c('router-view'), _vm._v(" "), _c('nav', {
     staticClass: "mui-bar mui-bar-tab"
@@ -45089,12 +45123,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("会员")])]), _vm._v(" "), _c('router-link', {
     staticClass: "mui-tab-item",
     attrs: {
-      "to": "/shopcar"
+      "to": "/shopcar/car"
     }
   }, [_c('span', {
     staticClass: "mui-icon mui-icon-contact"
   }, [_c('span', {
-    staticClass: "mui-badge"
+    staticClass: "mui-badge",
+    attrs: {
+      "id": "carcount"
+    }
   }, [_vm._v("0")])]), _vm._v(" "), _c('span', {
     staticClass: "mui-tab-label"
   }, [_vm._v("购物车")])]), _vm._v(" "), _c('router-link', {
@@ -45364,7 +45401,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "id": "subtmpl"
     }
   }, [_c('div', {
-    staticClass: "mui-numbox"
+    staticClass: "mui-numbox",
+    staticStyle: {
+      "width": "160px",
+      "height": "35px"
+    }
   }, [_c('button', {
     staticClass: "mui-btn mui-btn-numbox-minus",
     attrs: {
@@ -45694,7 +45735,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "dataObj": _vm.getcount
     }
-  })], 1), _vm._v(" "), _c('li', [_c('mt-button', {
+  }), _vm._v(" "), _c('transition', {
+    on: {
+      "before-enter": _vm.beforeEnter,
+      "enter": _vm.enter,
+      "after-enter": _vm.afterEnter
+    }
+  }, [(_vm.isshow) ? _c('div', {
+    staticClass: "ball"
+  }) : _vm._e()])], 1), _vm._v(" "), _c('li', [_c('mt-button', {
     attrs: {
       "type": "primary",
       "size": "small"
@@ -45703,6 +45752,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "type": "danger",
       "size": "small"
+    },
+    on: {
+      "click": _vm.toshopcar
     }
   }, [_vm._v("加入购物车")])], 1)])]), _vm._v(" "), _c('div', {
     attrs: {
@@ -46290,6 +46342,30 @@ module.exports = function(module) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return carcount; });
+/* harmony export (immutable) */ __webpack_exports__["a"] = getTop;
+/* unused harmony export getLeft */
+var carcount = document.querySelector('#carcount');
+//获取元素纵坐标
+function getTop(e) {
+    //console.log(e);
+    var offset = e.offsetTop;
+    if (e.offsetParent != null) offset += getTop(e.offsetParent);
+    return offset;
+}
+
+//获取元素横坐标
+function getLeft(e) {
+    var offset = e.offsetLeft;
+    if (e.offsetParent != null) offset += getLeft(e.offsetParent);
+    return offset;
+}
+
+/***/ }),
+/* 231 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(130);
@@ -46364,8 +46440,8 @@ var router1 = new __WEBPACK_IMPORTED_MODULE_2_vue_router__["a" /* default */]({
 		{ path: '/goods/goodsinfo/:id', component: __WEBPACK_IMPORTED_MODULE_9__components_goods_goodsinfo_vue___default.a },
 		{ path: '/goods/goodsdesc/:id', component: __WEBPACK_IMPORTED_MODULE_10__components_goods_goodsdesc_vue___default.a },
 		{ path: '/goods/goodscomment/:id', component: __WEBPACK_IMPORTED_MODULE_11__components_goods_goodscomment_vue___default.a },
-		{ path: '/shopcar/car', component: __WEBPACK_IMPORTED_MODULE_12__components_shopcar_car_vue___default.a },  // 购物车
-		
+		{ path: '/shopcar/car', component: __WEBPACK_IMPORTED_MODULE_12__components_shopcar_car_vue___default.a },
+
 	]
 });
 
@@ -46409,7 +46485,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["default"]({
 });
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports) {
 
 /* (ignored) */

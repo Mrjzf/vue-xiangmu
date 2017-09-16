@@ -18,10 +18,13 @@
                 <li class="inputli">
                     购买数量：
                     <inputnumber v-on:dataObj="getcount" class="inputnumber"></inputnumber>
+                    <transition v-on:before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+                        <div v-if="isshow" class="ball"></div>
+                    </transition>
                 </li>
                 <li>
                     <mt-button type="primary" size="small">立即购买</mt-button>
-                    <mt-button type="danger" size="small">加入购物车</mt-button>
+                    <mt-button type="danger" size="small" @click="toshopcar">加入购物车</mt-button>
                 </li>
             </ul>
         </div>
@@ -54,6 +57,9 @@
 import common from '../../kits/common.js';
 import slider from '../subcom/slider.vue';
 import inputnumber from '../subcom/inputNumber.vue';
+import {getTop,getLeft,carcount} from '../../kits/offset.js';
+import {vm, countStr} from '../../kits/vm.js';
+import {setItem,valueObj} from '../../kits/localSg.js';
 
 export default {
     components: {
@@ -65,7 +71,10 @@ export default {
             id: 0,
             imgs: [],
             info: [],
-            inputNumberCount: 1
+            inputNumberCount: 1,
+            isshow: false,
+            ballX:0,
+            ballY:0
         }
     },
     created() {
@@ -84,13 +93,48 @@ export default {
         getinfo() {
             var url = common.apidomain + '/api/goods/getinfo/' + this.id;
             this.$http.get(url).then(function(res) {
-                console.log(res);
+                //console.log(res);
                 this.info = res.body.message[0];
             })
         },
         getcount(count) {
             this.inputNumberCount = count;
-        }
+        },
+        toshopcar() {
+            var carcount = document.querySelector('#carcount');
+            carcount.innerHTML = parseInt(carcount.innerHTML) + this.inputNumberCount;
+            //也可以使用传值
+
+            //实现小球动画
+            this.isshow = !this.isshow;
+
+            //不同屏幕下小球结束的位置
+            this.ballX = getLeft(carcount);
+            this.ballY = getTop(carcount);
+
+            //触发事件
+            vm.$emit(countStr,this.inputNumberCount);
+            //存储数据
+            valueObj.goodsid = this.id;
+            valueObj.count = this.inputNumberCount;
+            setItem(valueObj);
+
+        },
+
+        //控制小球动画的三个方法
+        beforeEnter(el) {
+            el.style.transform = "translate(0,0)";  //起始位置
+        },
+        enter(el, done) {
+            el.offsetWidth;    // 实时刷新小球动画
+            console.log(this.ballX,this.ballY);
+            el.style.transform = "translate("+this.ballX+"px,"+this.ballY+"px)";  //小球结束位置
+            done();
+        },
+        afterEnter(el) {
+            this.isshow = !this.isshow;
+        },
+
     }
 }
 </script>
@@ -156,9 +200,9 @@ export default {
     width: 20px;
     border-radius: 50%;
     position: absolute;
-    left: 150px;
+    left: 170px;
     top: 10px;
-    transition: all 0.4s ease;
+    transition: all 1s ease;
     z-index: 100;
 }
 </style>
