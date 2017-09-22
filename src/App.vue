@@ -2,7 +2,12 @@
 <template>
 	<div>
 		<!-- 1.0 利用mint-ui中的header组件实现整个系统的头部 -->
-		<mt-header fixed title="传智.黑马"></mt-header>
+		<mt-header fixed title="vue商城"></mt-header>
+
+		<!-- 返回按钮 -->
+		<div v-if="isshow" id="back">
+			<a href="javascript:void(0)" @click="backto">返回</a>
+		</div>
 
 		<!-- 2.0 利用vue-router的 <router-view>进行占位 -->
 		<router-view></router-view>
@@ -38,19 +43,38 @@
 	export default{  // es6的导出对象的写法
 		data(){  //等价于 es5的 data:function(){
 			return {
-				
+				isshow:false
+			}
+		},
+		watch:{
+			'$route':function(newroute,oldroute){
+				if (newroute.path.toLowerCase() == '/home') {
+					this.isshow = false;
+				}else{
+					this.isshow = true;
+				}
 			}
 		},
 		methods:{
-			
+			backto(){
+				this.$router.go(-1);
+			}
 		},
-		created(){
-
-		}
 	}
 </script>
 
 <style scoped>
 /*当前页面的css样式写到这里，其中scoped表示这个里面写的css代码只是在当前组件页面上有效，不会去影响到其他组件页面*/
-
+	#back{
+		width: 60px;
+		z-index: 200;
+		position: fixed;
+		top: 10px;
+		left: 10px;
+	}
+	#back a{
+		color: #fff;
+		font-size: 16px;
+		font-weight: bold;
+	}
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div id="subtmpl">
-        <div class="mui-numbox" style="width: 160px;height: 35px;">
+        <div class="mui-numbox" style="width: 120px;height: 35px;">
             <button class="mui-btn mui-btn-numbox-minus" type="button" @click="substrict">-</button>
             <input class="mui-input-numbox" type="number" v-model="count" />
             <button class="mui-btn mui-btn-numbox-plus" type="button" @click="add">+</button>
